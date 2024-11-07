@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 public class BaseEntity {
-    @Column(name="is_deleted", nullable=false) // 삭제 여부
+    @Column(name="is_deleted") // 삭제 여부
     @ColumnDefault("false")
     private Boolean isDeleted;
 
