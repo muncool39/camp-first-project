@@ -30,12 +30,19 @@ public class GlobalControllerAdvice {
         log.error(String.format(ERROR_LOG, e.getMessage(), Arrays.toString(e.getSupportedMethods())));
         return new ExceptionResponse("지원하지 않는 요청 방법입니다.");
     }
-    
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ExceptionResponse missingServletRequestParameter(final MissingServletRequestParameterException e) {
         log.error(String.format(ERROR_LOG, e.getParameterName(), e.getMessage()));
         return new ExceptionResponse("필요한 파라미터가 입력되지 않았습니다.");
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ExceptionResponse methodArgumentNotValidException(final MethodArgumentNotValidException e){
+        log.error(String.format(ERROR_LOG, e.getParameter(), e.getMessage()));
+        return new ExceptionResponse("전달된 데이터에 오류가 있습니다.");
     }
 
 }
