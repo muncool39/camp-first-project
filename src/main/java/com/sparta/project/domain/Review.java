@@ -6,9 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_review")
@@ -37,5 +35,15 @@ public class Review extends BaseEntity { // 리뷰
 
 	@Column(name="score") // 평점
 	private Integer score;
+
+	@Builder
+	public Review(String reviewId, User user, Store store, Order order, String content, Integer score) {
+		this.reviewId = reviewId;
+		this.user = user;
+		this.store = store;
+		this.order = order;
+		this.content = content;
+		this.score = score;
+	}
 
 }

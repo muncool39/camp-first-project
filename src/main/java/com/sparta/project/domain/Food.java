@@ -7,9 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_food")
@@ -33,7 +31,16 @@ public class Food extends BaseEntity { // 음식
 	private Integer price;
 
 	@Column(name="is_closed", nullable=false) // 숨김 여부
-	@ColumnDefault("false")
 	private Boolean isClosed;
+
+	@Builder
+	public Food(String foodId, Store store, String name, String description, Integer price, Boolean isClosed) {
+		this.foodId = foodId;
+		this.store = store;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.isClosed = isClosed;
+	}
 
 }

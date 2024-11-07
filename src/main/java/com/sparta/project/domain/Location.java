@@ -7,9 +7,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_location")
@@ -24,4 +22,12 @@ public class Location extends BaseEntity { // 지역
 
     @Column(name="description", length=50) // 설명
     private String description;
+
+    @Builder
+    public Location(String locationId, String name, String description) {
+        this.locationId = locationId;
+        this.name = name;
+        this.description = description;
+    }
+
 }

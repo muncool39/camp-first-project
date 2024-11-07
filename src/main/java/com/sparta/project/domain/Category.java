@@ -7,9 +7,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_category")
@@ -24,4 +22,12 @@ public class Category extends BaseEntity { // 음식점 카테고리
 
     @Column(name="description", length=50) // 설명
     private String description;
+
+    @Builder
+    public Category(String categoryId, String name, String description) {
+        this.categoryId = categoryId;
+        this.name = name;
+        this.description = description;
+    }
+
 }

@@ -6,9 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_chat")
@@ -27,5 +25,13 @@ public class Chat extends BaseEntity { // 채팅 기록
 
 	@Column(name="answer", columnDefinition = "TEXT") // 답변
 	private String answer;
+
+	@Builder
+	public Chat(String chatId, User user, String question, String answer) {
+		this.chatId = chatId;
+		this.user = user;
+		this.question = question;
+		this.answer = answer;
+	}
 
 }

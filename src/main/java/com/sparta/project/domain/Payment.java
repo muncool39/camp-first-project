@@ -7,9 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_payment")
@@ -29,5 +27,13 @@ public class Payment extends BaseEntity { // 결제
 
 	@Column(name="payment_price", nullable=false) // 결제 가격
 	private Integer paymentPrice;
+
+	@Builder
+	public Payment(String paymentId, Order order, PaymentType type, Integer paymentPrice) {
+		this.paymentId = paymentId;
+		this.order = order;
+		this.type = type;
+		this.paymentPrice = paymentPrice;
+	}
 
 }

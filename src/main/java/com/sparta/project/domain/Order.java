@@ -4,6 +4,7 @@ import com.sparta.project.domain.enums.OrderStatus;
 import com.sparta.project.domain.enums.OrderType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -11,9 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_order")
@@ -33,6 +32,7 @@ public class Order extends BaseEntity { // 주문
 
 	@Column(name="status", nullable=false) // 주문 상태 (대기/승인/취소)
 	@Enumerated(EnumType.STRING)
+	@ColumnDefault("'WAITING'")
 	private OrderStatus status;
 
 	@Column(name="order_price", nullable=false) // 주문 가격
@@ -40,5 +40,14 @@ public class Order extends BaseEntity { // 주문
 
 	@OneToMany(mappedBy="order")
 	private List<OrderFood> orderFoods = new ArrayList<>();
+
+	@Builder
+	public Order(String orderId, User user, OrderType type, Integer orderPrice) {
+		this.orderId = orderId;
+		this.user = user;
+		this.type = type;
+		this.status = OrderStatus.WAITING;
+		this.orderPrice = orderPrice;
+	}
 
 }

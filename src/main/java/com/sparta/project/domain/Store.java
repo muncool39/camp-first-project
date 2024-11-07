@@ -6,9 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_store")
@@ -40,5 +38,16 @@ public class Store extends BaseEntity { // 음식점
 	@JoinColumn(name="location_id", nullable=false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Location location;
+
+	@Builder
+	public Store(String storeId, String name, String description, String address, User owner, Category category, Location location) {
+		this.storeId = storeId;
+		this.name = name;
+		this.description = description;
+		this.address = address;
+		this.owner = owner;
+		this.category = category;
+		this.location = location;
+	}
 
 }

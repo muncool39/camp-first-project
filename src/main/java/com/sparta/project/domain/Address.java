@@ -6,9 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 @Entity
 @Table(name="p_address")
@@ -39,5 +37,17 @@ public class Address extends BaseEntity { // 배송지
 
 	@Column(name="is_default") // 메인 주소지 여부
 	private Boolean isDefault;
+
+	@Builder
+	public Address(String addressId, User user, String city, String district, String streetName, Integer streetNumber, String detail, Boolean isDefault) {
+		this.addressId = addressId;
+		this.user = user;
+		this.city = city;
+		this.district = district;
+		this.streetName = streetName;
+		this.streetNumber = streetNumber;
+		this.detail = detail;
+		this.isDefault = isDefault;
+	}
 
 }
