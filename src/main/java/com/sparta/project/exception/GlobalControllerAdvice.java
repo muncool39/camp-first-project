@@ -24,5 +24,11 @@ public class GlobalControllerAdvice {
         return ResponseEntity.status(e.getHttpStatus()).body(new ExceptionResponse(e.getMessage()));
     }
 
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ExceptionResponse httpReqMethodNotSupportException(final HttpRequestMethodNotSupportedException e){
+        log.error(String.format(ERROR_LOG, e.getMessage(), Arrays.toString(e.getSupportedMethods())));
+        return new ExceptionResponse("지원하지 않는 요청 방법입니다.");
+    }
 
 }
