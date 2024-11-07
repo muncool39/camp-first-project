@@ -7,6 +7,9 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -34,5 +37,8 @@ public class Order extends BaseEntity { // 주문
 
 	@Column(name="order_price", nullable=false) // 주문 가격
 	private Integer orderPrice;
+
+	@OneToMany(mappedBy="order")
+	private List<OrderFood> orderFoods = new ArrayList<>();
 
 }

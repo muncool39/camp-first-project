@@ -9,7 +9,6 @@ import org.hibernate.annotations.OnDeleteAction;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name="p_order_food")
 public class OrderFood extends BaseEntity { // 주문-음식
