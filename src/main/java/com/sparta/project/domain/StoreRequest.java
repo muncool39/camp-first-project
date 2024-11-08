@@ -34,22 +34,22 @@ public class StoreRequest extends BaseEntity { // 음식점 허가 요청
 	private User owner;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="category_id", nullable=false)
-	private Category category;
+	@JoinColumn(name="store_category_id", nullable=false)
+	private StoreCategory storeCategory;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="location_id", nullable=false)
 	private Location location;
 
 	@Builder
-	public StoreRequest(String storeRequestId, String name, String description, String address, User owner, Category category, Location location) {
+	public StoreRequest(String storeRequestId, String name, String description, String address, User owner, StoreCategory storeCategory, Location location) {
 		this.storeRequestId = storeRequestId;
 		this.isApproved = false;
 		this.name = name;
 		this.description = description;
 		this.address = address;
 		this.owner = owner;
-		this.category = category;
+		this.storeCategory = storeCategory;
 		this.location = location;
 	}
 }

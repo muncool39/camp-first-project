@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Entity
-@Table(name="p_category")
-public class Category extends BaseEntity { // 음식점 카테고리
+@Table(name="p_store_category")
+public class StoreCategory extends BaseEntity { // 음식점 카테고리
 
     @Id
-    @Column(name="category_id", length=36, nullable=false, updatable=false)
-    private String categoryId;
+    @Column(name="store_category_id", length=36, nullable=false, updatable=false)
+    private String storeCategoryId;
 
     @Column(name="name", length=20, nullable=false) // 이름
     private String name;
@@ -24,8 +24,8 @@ public class Category extends BaseEntity { // 음식점 카테고리
     private String description;
 
     @Builder
-    public Category(String categoryId, String name, String description) {
-        this.categoryId = categoryId;
+    public StoreCategory(String storeCategoryId, String name, String description) {
+        this.storeCategoryId = storeCategoryId;
         this.name = name;
         this.description = description;
     }
