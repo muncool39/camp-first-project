@@ -33,7 +33,7 @@ public abstract class BaseEntity {
     private LocalDateTime deletedAt;
 
 //    @CreatedBy
-    @Column(name="created_by", length=10, updatable = false)
+    @Column(name="created_by", length=10)
     private String createdBy;
 
 //    @LastModifiedBy
