@@ -23,6 +23,11 @@ public class Payment extends BaseEntity { // 결제
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Order order;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", nullable=false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User user;
+
 	@Column(name="type", nullable=false) // 결제 방식 (카드)
 	@Enumerated(EnumType.STRING)
 	private PaymentType type;
@@ -38,9 +43,10 @@ public class Payment extends BaseEntity { // 결제
 	private String pgKey;
 
 	@Builder
-	public Payment(String paymentId, Order order, PaymentType type, Integer paymentPrice, PgName pgName, String pgKey) {
+	public Payment(String paymentId, Order order, User user, PaymentType type, Integer paymentPrice, PgName pgName, String pgKey) {
 		this.paymentId = paymentId;
 		this.order = order;
+		this.user = user;
 		this.type = type;
 		this.paymentPrice = paymentPrice;
 		this.pgName = pgName;
