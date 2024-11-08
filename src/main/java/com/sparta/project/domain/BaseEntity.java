@@ -48,7 +48,7 @@ public abstract class BaseEntity {
     참고: https://javacpro.tistory.com/85
      */
 
-    public void delete(String username) {
+    public void deleteBase(String username) {
         this.isDeleted = true;
         this.deletedAt = LocalDateTime.now();
         this.deletedBy = username;
