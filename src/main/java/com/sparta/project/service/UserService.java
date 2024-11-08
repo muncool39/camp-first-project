@@ -2,8 +2,12 @@ package com.sparta.project.service;
 
 
 import com.sparta.project.config.jwt.TokenProvider;
+import com.sparta.project.config.jwt.UserAuthentication;
 import com.sparta.project.domain.User;
+import com.sparta.project.dto.user.UserLoginRequest;
 import com.sparta.project.dto.user.UserSignupRequest;
+import com.sparta.project.exception.CodeBloomException;
+import com.sparta.project.exception.ErrorCode;
 import com.sparta.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +32,16 @@ public class UserService {
                 .role(request.role())
                 .build()
         );
+    }
+
+    public String login(final UserLoginRequest request) {
+        User user = userRepository.findByUsername(request.username()).orElseThrow(()->
+                new CodeBloomException(ErrorCode.USER_NOT_FOUND));
+        if (!passwordEncoder.matches(request.password(), user.getPassword())) {
+            throw new CodeBloomException(ErrorCode.INVALID_PASSWORD);
+        }
+        UserAuthentication userAuthentication = new UserAuthentication(user.getUserId(), null, null);
+        return tokenProvider.generateToken(userAuthentication);
     }
 
 }
