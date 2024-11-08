@@ -11,6 +11,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @Slf4j
 @RestControllerAdvice
@@ -22,6 +23,13 @@ public class GlobalControllerAdvice {
     public ResponseEntity<ExceptionResponse> applicationException(final CodeBloomException e){
         log.error(String.format(ERROR_LOG, e.getHttpStatus(), e.getMessage()));
         return ResponseEntity.status(e.getHttpStatus()).body(new ExceptionResponse(e.getMessage()));
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ExceptionResponse handleNoResourceFoundException(NoResourceFoundException e) {
+        log.error(String.format(ERROR_LOG, e.getMessage(), e.getClass().getName()));
+        return new ExceptionResponse("지원하지 않는 경로입니다.");
     }
 
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
