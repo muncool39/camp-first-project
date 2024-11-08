@@ -2,7 +2,6 @@ package com.sparta.project.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,11 +9,11 @@ import org.hibernate.annotations.OnDeleteAction;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Entity
-@Table(name="p_food")
-public class Food extends BaseEntity { // 음식
+@Table(name="p_menu")
+public class Menu extends BaseEntity { // 메뉴
 	@Id
-	@Column(name="food_id", length=36, nullable=false, updatable=false)
-	private String foodId;
+	@Column(name="menu_id", length=36, nullable=false, updatable=false)
+	private String menuId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
@@ -34,8 +33,8 @@ public class Food extends BaseEntity { // 음식
 	private Boolean isClosed;
 
 	@Builder
-	public Food(String foodId, Store store, String name, String description, Integer price, Boolean isClosed) {
-		this.foodId = foodId;
+	public Menu(String menuId, Store store, String name, String description, Integer price, Boolean isClosed) {
+		this.menuId = menuId;
 		this.store = store;
 		this.name = name;
 		this.description = description;
