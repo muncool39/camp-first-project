@@ -1,6 +1,8 @@
 package com.sparta.project.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -30,6 +32,8 @@ public class Review extends BaseEntity { // 리뷰
 	@Column(name="content", length=1000) // 리뷰 내용
 	private String content;
 
+	@Min(1)
+	@Max(5)
 	@Column(name="score") // 평점
 	private Integer score;
 
