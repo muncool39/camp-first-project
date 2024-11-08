@@ -9,11 +9,11 @@ import org.hibernate.annotations.OnDeleteAction;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString
 @Entity
-@Table(name="p_chat")
-public class Chat extends BaseEntity { // 채팅 기록
+@Table(name="p_ai")
+public class Ai extends BaseEntity { // 채팅 기록
 	@Id
-	@Column(name="chat_id", length=36, nullable=false, updatable=false)
-	private String chatId;
+	@Column(name="ai_id", length=36, nullable=false, updatable=false)
+	private String aiId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
@@ -27,8 +27,8 @@ public class Chat extends BaseEntity { // 채팅 기록
 	private String answer;
 
 	@Builder
-	public Chat(String chatId, User user, String question, String answer) {
-		this.chatId = chatId;
+	public Ai(String aiId, User user, String question, String answer) {
+		this.aiId = aiId;
 		this.user = user;
 		this.question = question;
 		this.answer = answer;
