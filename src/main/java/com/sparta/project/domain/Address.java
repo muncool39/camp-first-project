@@ -17,7 +17,6 @@ public class Address extends BaseEntity { // 배송지
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
 	@Column(name="city", length=20) // 도시

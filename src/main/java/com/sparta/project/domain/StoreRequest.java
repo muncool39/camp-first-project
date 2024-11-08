@@ -31,17 +31,14 @@ public class StoreRequest extends BaseEntity { // 음식점 허가 요청
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="owner_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User owner;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="category_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Category category;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="location_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Location location;
 
 	@Builder

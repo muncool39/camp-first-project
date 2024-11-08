@@ -17,7 +17,6 @@ public class Ai extends BaseEntity { // 채팅 기록
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
 	@Column(name="question", columnDefinition = "TEXT") // 질문

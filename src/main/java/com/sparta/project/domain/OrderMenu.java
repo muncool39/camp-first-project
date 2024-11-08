@@ -15,13 +15,11 @@ public class OrderMenu extends BaseEntity { // 주문-메뉴
 	private String orderMenuId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="menu_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name="menu_id")
 	private Menu menu;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Order order;
 
 	@Column(name="count", nullable=false) // 해당 메뉴 주문 개수

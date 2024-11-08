@@ -17,17 +17,14 @@ public class Review extends BaseEntity { // 리뷰
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Store store;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Order order;
 
 	@Column(name="content", length=1000) // 리뷰 내용

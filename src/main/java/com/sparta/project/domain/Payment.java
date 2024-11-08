@@ -20,12 +20,10 @@ public class Payment extends BaseEntity { // 결제
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Order order;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="user_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User user;
 
 	@Column(name="type", nullable=false) // 결제 방식 (카드)

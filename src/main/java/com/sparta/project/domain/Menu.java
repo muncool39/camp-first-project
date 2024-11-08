@@ -17,7 +17,6 @@ public class Menu extends BaseEntity { // 메뉴
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="store_id", nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Store store;
 
 	@Column(name="name", length=50, nullable=false) // 이름
