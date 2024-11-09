@@ -1,8 +1,7 @@
 package com.sparta.project.service;
 
 
-import com.sparta.project.config.jwt.TokenProvider;
-import com.sparta.project.config.jwt.UserAuthentication;
+import com.sparta.project.config.jwt.JwtUtil;
 import com.sparta.project.domain.User;
 import com.sparta.project.dto.user.UserLoginRequest;
 import com.sparta.project.dto.user.UserSignupRequest;
@@ -18,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final TokenProvider tokenProvider;
+    private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -37,8 +36,7 @@ public class UserService {
         if (!passwordEncoder.matches(request.password(), user.getPassword())) {
             throw new CodeBloomException(ErrorCode.INVALID_PASSWORD);
         }
-        UserAuthentication userAuthentication = new UserAuthentication(user.getUserId(), null, null);
-        return tokenProvider.generateToken(userAuthentication);
+        return jwtUtil.generateToken(String.valueOf(user.getUserId()), user.getRole());
     }
 
 }
